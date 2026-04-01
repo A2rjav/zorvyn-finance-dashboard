@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f8fafc;
+  --color-surface-tertiary: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+
+  --fx-glow-primary: rgba(99, 102, 241, 0.2);
+  --fx-glow-emerald: rgba(16, 185, 129, 0.14);
+}
+
+@layer base {
+  .dark {
+    --color-surface: #0f172a;
+    --color-surface-secondary: #1e293b;
+    --color-surface-tertiary: #334155;
+    --color-border: #334155;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #64748b;
+
+    --fx-glow-primary: rgba(99, 102, 241, 0.32);
+    --fx-glow-emerald: rgba(16, 185, 129, 0.22);
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 8% -10%, var(--fx-glow-primary), transparent 34%),
+    radial-gradient(circle at 110% 15%, var(--fx-glow-emerald), transparent 32%),
+    var(--color-surface-secondary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: 'Space Grotesk', 'Manrope', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@layer components {
+  .card-surface {
+    position: relative;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--color-surface) 94%, white 6%);
+    border: 1px solid color-mix(in srgb, var(--color-border) 86%, var(--color-primary-300) 14%);
+    box-shadow:
+      0 12px 40px rgba(15, 23, 42, 0.05),
+      0 1px 0 rgba(255, 255, 255, 0.45) inset;
+  }
+
+  .dark .card-surface {
+    background: color-mix(in srgb, var(--color-surface) 90%, #111827 10%);
+    box-shadow:
+      0 20px 44px rgba(2, 8, 23, 0.5),
+      0 1px 0 rgba(148, 163, 184, 0.08) inset;
+  }
+
+  .card-surface::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg, rgba(99, 102, 241, 0.12), transparent 34%);
+    pointer-events: none;
+  }
+
+  .card-surface > * {
+    position: relative;
+    z-index: 1;
+  }
+}
